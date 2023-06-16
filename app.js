@@ -23,7 +23,7 @@ const axePriceElem = document.getElementById('axePrice')
 const pickPriceElem = document.getElementById('pickPrice')
 const roverPriceElem = document.getElementById('roverPrice')
 const hummerPriceElem = document.getElementById('hummerPrice')
-// OBJECTS
+// SECTION OBJECTS
 let clickUpgrades = [
   {
     name: 'pickaxe',
@@ -52,7 +52,7 @@ let automaticUpgrades = [
     multiplier: 100
   }
 ];
-// Functions
+// SECTION Functions
 function updateCount() {
   clickCountElem.innerText = clickCount
   clickAmountElem.innerText = clickAmount
