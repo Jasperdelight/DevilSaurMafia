@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+
+  <title>Document</title>
+</head>
+
+<body>
+  <header></header>
+
+  <main>
+
+    <div class="container-fluid bg-dark">
+
+      <div class="row">
+
+        <div class="col-12 d-flex justify-content-center">
+          <img onclick="mine()"
+            src="https://images.unsplash.com/photo-1496989981497-27d69cdad83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2lyY2xlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+            alt="">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6 text-white text-end">
+          <p>Click Count
+            <span id="clickCount">0</span>
+          </p>
+        </div>
+
+        <div class="col-6 text-white ">
+          <p id="">Click Amount<span id="clickAmount">0</span></p>
+          <p id="">Auto Amount<span id="autoAmount">0</span></p>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-6">
+
+          <button onclick="buyPick('pickaxe')">buy pick <span id="pickAmount"></span>
+            <p>price <span id="pickPrice"></span></p>
+          </button>
+
+          <button onclick="buyAxe()">buy Axe <span id="axeAmount"></span>
+            <p>price <span id="axePrice">500</span></p>
+          </button>
+
+          <button onclick="buyHummer('hummer')"> buy hummer
+            <span id="hummerAmount">0</span>
+            <p>price <span id="hummerPrice"></span></p>
+          </button>
+
+          <button onclick="buyRover('rover')"> buy rover
+            <span id="roverAmount">0</span>
+            <p>price <span id="roverPrice">1000</span></p>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- TEST BUTTONS -->
+    <!-- <div class="col-6">
+
+          <button onclick="collectAutoUpgrades()">Auto Upgrade TESTER</button>
+
+          <button onclick="buyItem('pickaxe')"> TESTE
+            <span id="itemCount">0</span></button>
+
+          <button onclick="buyItem('axe')"> TESTE
+            <span id="itemCount">0</span></button> -->
+
+
+
+
+
+
+  </main>
+
+  <footer></footer>
+
+
+  <script src="app.js"></script>
+</body>
+
+</html>
