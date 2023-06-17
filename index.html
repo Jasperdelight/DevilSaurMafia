@@ -16,14 +16,16 @@
 
   <main>
 
-    <div class="container-fluid bg-dark">
+    <div class="container-fluid bg-dark unselectable">
 
       <div class="row">
 
         <div class="col-12 d-flex justify-content-center">
-          <img onclick="mine()"
-            src="https://images.unsplash.com/photo-1496989981497-27d69cdad83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2lyY2xlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
-            alt="">
+          <i id="canvas" class="background-image" onclick="mine()">
+
+            <img id="bonus-image" class="bonus-image" onclick="bonus()"
+              src="https://images.unsplash.com/photo-1640547587776-4d9256b6f6ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2hpcCUyMGRvcml0b3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              alt="bonus"></i>
         </div>
       </div>
 
@@ -66,15 +68,15 @@
 
 
     <!-- TEST BUTTONS -->
-    <!-- <div class="col-6">
+    <div class="col-6">
 
-          <button onclick="collectAutoUpgrades()">Auto Upgrade TESTER</button>
+      <button onclick="collectAutoUpgrades()">Auto Upgrade TESTER</button>
 
-          <button onclick="buyItem('pickaxe')"> TESTE
-            <span id="itemCount">0</span></button>
+      <button onclick="hideImage()"> TESTEr
+        <span id="itemCount">0</span></button>
 
-          <button onclick="buyItem('axe')"> TESTE
-            <span id="itemCount">0</span></button> -->
+      <button onclick="buyItem('axe')"> TESTE
+        <span id="itemCount">0</span></button>
 
 
 

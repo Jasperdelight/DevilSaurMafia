@@ -1,3 +1,22 @@
-img {
+img,
+i {
   cursor: pointer;
+}
+
+.unselectable {
+  user-select: none;
+}
+
+#canvas {
+  background-image: url(https://images.unsplash.com/flagged/photo-1557040430-fe79b4234586?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmlnJTIwYmVsbHl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60);
+  width: 60vh;
+  height: 60vh;
+  position: relative;
+}
+
+.bonus-image {
+  max-width: 15vh;
+  max-height: 15vh;
+  display: none;
+
 }

@@ -158,7 +158,50 @@ function buyHummer(itemName) {
   }
   else { alert('not enough clicks') }
 }
+// SECTION RANDOM STUFF
+
+function hideImage() {
+  const img = document.getElementById('bonus-image');
+  const canvas = document.getElementById('canvas');
+  if (img.style.display === 'none') {
+    // hide / unhide image
+    img.style.display = 'block';
+    img.style.position = 'absolute';
+    // get dimension of img
+    const imgWidth = img.offsetWidth;
+    const imgHeight = img.offsetHeight;
+    // get dimensions of canvas
+    const canvasWidth = canvas.offsetWidth;
+    const canvasHeight = canvas.offsetHeight;
+    // generate number for random spot
+    const randomX = Math.floor(Math.random() * (canvasWidth - imgWidth));
+    const randomY = Math.floor(Math.random() * (canvasHeight - imgHeight));
+    // draw to random spot
+    img.style.left = randomX + 'px'
+    img.style.top = randomY + 'px'
+  } else {
+    img.style.display = 'none'
+  }
+  console.log('bonus')
+}
+function bonus() {
+  clickCount += 10
+  clickUpgrades.forEach(upgrade => {
+    let upgradeClick = upgrade.quantity * upgrade.multiplier
+    clickCount += upgradeClick
+  });
+  console.log('clickCount', clickCount)
+  console.log('clickAmount', clickAmount)
+  updateCount()
+}
 
 
+
+
+// ON PAGE LOAD
 setInterval(collectAutoUpgrades, 3000);
-updateCount()
+updateCount();
+hideImage();
+
+setInterval(hideImage, 10000);
+setInterval(hideImage, 11000);
