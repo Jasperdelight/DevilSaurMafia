@@ -1,12 +1,19 @@
 // SECTION Global Variables
+// Current Leather
 let clickCount = 0
+// Leather Per Click
 let clickAmount = 1
+// Passive Leather
 let autoAmount = 0
 let pickElem = ''
 let itemElem = 0
+// Skinning Knife
 let axePrice = 100
+// Skinning Skill +
 let pickPrice = 20
+// Map/Compass
 let roverPrice = 250
+// Boomkin
 let hummerPrice = 1000
 let leatherGained = 0
 // SECTION DOC Elements
@@ -268,13 +275,13 @@ function mileStone() {
     achievementTwoElem.innerText = '🐱‍👤🐱‍👤ITS OVER 9000!!!!🐱‍👤🐱‍👤'
   }
   if (leatherGained >= 10000) {
-    rareSpawnElem.innerText = '🎉 ACHIEVEMENT UNLOCKED - Close Your Damn Web Browser🎉'
+    rareSpawnElem.innerText = '🎉 ACHIEVEMENT UNLOCKED - Close Your Web Browser🎉'
     achievementElem.innerText = '🐱‍👤🐱‍👤ITS OVER 9000!!!!🐱‍👤🐱‍👤'
-    achievementTwoElem.innerText = '⚡⚡ Close Your Damn Web Browser ⚡⚡'
+    achievementTwoElem.innerText = '⚡⚡ Close Your Web Browser ⚡⚡'
   }
   if (leatherGained >= 100000) {
     rareSpawnElem.innerText = '🎉 ACHIEVEMENT UNLOCKED - Seriously Your Wasting Power >:C🎉'
-    achievementElem.innerText = '⚡⚡ Close Your Damn Web Browser ⚡⚡'
+    achievementElem.innerText = '⚡⚡ Close Your Web Browser ⚡⚡'
     achievementTwoElem.innerText = '😡😡 Seriously Your Wasting Power >:C 😡😡'
   }
   if (leatherGained >= 1000000) {
@@ -353,8 +360,61 @@ function bonus() {
   console.log('clickAmount', clickAmount)
   updateCount()
 }
+// SAVE
+function saveGame() {
+  let confirmed = confirm('Are you Sure? Will OverWrite Current Saved Game.');
+  if (confirmed) {
+    localStorage.setItem('clickCount', clickCount)
+    localStorage.setItem('clickAmount', clickAmount)
+    localStorage.setItem('autoAmount', autoAmount)
+    localStorage.setItem('pickElem', pickElem)
+    localStorage.setItem('itemElem', itemElem)
+    localStorage.setItem('axePrice', axePrice)
+    localStorage.setItem('pickPrice', pickPrice)
+    localStorage.setItem('roverPrice', roverPrice)
+    localStorage.setItem('hummerPrice', hummerPrice)
+    localStorage.setItem('leatherGained', leatherGained)
+    updateCount();
+    console.log('game saved');
+  }
+  else {
+    console.log('save cancelled')
+  }
+}
+// LOAD
+function loadGame() {
+  clickCount = parseInt(localStorage.getItem('clickCount', clickCount))
+  // clickAmount = parseInt(localStorage.getItem('clickAmount', clickAmount))
+  // autoAmount = parseInt(localStorage.getItem('autoAmount', autoAmount))
+  // pickElem = parseInt(localStorage.getItem('pickElem', pickElem))
+  // itemElem = parseInt(localStorage.getItem('itemElem', itemElem))
+  // axePrice = parseInt(localStorage.getItem('axePrice', axePrice))
+  // pickPrice = parseInt(localStorage.getItem('pickPrice', pickPrice))
+  // roverPrice = parseInt(localStorage.getItem('roverPrice', roverPrice))
+  // hummerPrice = parseInt(localStorage.getItem('hummerPrice', hummerPrice))
+  leatherGained = parseInt(localStorage.getItem('leatherGained', leatherGained))
 
-
+  updateCount();
+  console.log('game loaded');
+}
+// RESET
+function resetGame() {
+  let confirmed = confirm('Are you Sure? Will Reset Current Scores');
+  if (confirmed) {
+    clickCount = 0
+    clickAmount = 1
+    autoAmount = 0
+    pickElem = ''
+    itemElem = 0
+    axePrice = 100
+    pickPrice = 20
+    roverPrice = 250
+    hummerPrice = 1000
+    leatherGained = 0
+    updateCount();
+    console.log('game reset')
+  }
+}
 // ON PAGE LOAD
 setInterval(collectAutoUpgrades, 3000);
 updateCount();

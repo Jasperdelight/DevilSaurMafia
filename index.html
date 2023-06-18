@@ -85,7 +85,8 @@
         <div class="col-4 " id="skinnningLevel">
           <div class="chat-zero" id="">
             <p class="glass-box p-4 text-center">
-              DevilSaur Leather Prices Are Up! <br> Time to take advantage of It. Collect as much leather as you can to
+              DevilSaur Leather Prices Are Up! <br> Every physical damage dealing class needs this leather to make their
+              Best In Slot Gear. Time to take advantage of It! Collect as much leather as you can to
               sell for profit. Beat everyone else to the tag. Be the first to click to claim the sweet spoils. If
               you do good enough maybe you'll finally get a day off to spend with the family. Maybe you can get those
               silly Boomkin's to help you with the job! <br> Legend Has of a RARE
@@ -102,6 +103,10 @@
           <p class="bg-dark text-center rounded">Total Leather Gained:
             <span class="text-danger" id="leatherGained"> 0</span>
           </p>
+          <!-- RESET GAME BUTTON -->
+          <div class="d-flex justify-content-center">
+            <button onclick="resetGame()" id="resetGame" class="btn btn-danger">Reset</button>
+          </div>
         </div>
         <!-- LEATHER PER CLICK /MIDDLE/RIGHT/TOP -->
         <div class="col-2">
@@ -110,6 +115,11 @@
           <!-- PASSIVE AMOUNT /MIDDLE/RIGHT/BOTTOM -->
           <p class="bg-dark text-center rounded" id="">Passive Leather: <span class="text-danger" id="autoAmount">
               0</span></p>
+          <!-- SAVE/LOAD BUTTONS -->
+          <div class="d-flex justify-content-center">
+            <button onclick="saveGame()" id="saveGame" class="btn btn-success">Save</button>
+            <button onclick="loadGame()" id="loadGame" class="btn btn-success">Load</button>
+          </div>
         </div>
         <!-- SECTION ACTIVE BUTTONS RIGHT (LEFT SIDE) -->
         <div class="col-4">
@@ -152,6 +162,7 @@
       <!-- UNUSED -->
       <div class="row justify-content-center">
         <div class="col-6">
+
         </div>
       </div>
     </div>
