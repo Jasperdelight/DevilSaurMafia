@@ -6,86 +6,180 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Space+Grotesk&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+
 
   <title>Document</title>
 </head>
 
-<body>
-  <header></header>
+<body class="font">
 
-  <main>
+  <!-- SECTION TITLE -->
+  <header class="container-fluid bg-dark text-white text-center">
+    <div class="row">
+      <div class="col-12">
+        <h1>Devilsaur Mafia</h1>
+      </div>
+    </div>
 
-    <div class="container-fluid bg-dark unselectable">
+    <!-- SECTION upgrades / alert banner -->
+    <div class="row">
+      <div class="col-3"></div>
+
+
+      <div class="col-6 text-danger">
+        <p id="rareSpawn"></p>
+      </div>
+      <div class="col-3"></div>
+    </div>
+  </header>
+  <!-- SECTION MAIN HERO CARD -->
+  <main class="bg-image">
+    <div class="container-fluid bg-image unselectable">
 
       <div class="row">
+        <!-- SECTION ACTIVE UPGRADE LEFT SIDE -->
+        <div class="col-3">
+          <div class="row justify-content-center">
+            <!-- TOP -->
+            <div class="col-12 text-white shadow rounded font-shadow text-center">
+              <div>
 
-        <div class="col-12 d-flex justify-content-center">
-          <i id="canvas" class="background-image" onclick="mine()">
+              </div>
 
-            <img id="bonus-image" class="bonus-image" onclick="bonus()"
-              src="https://images.unsplash.com/photo-1640547587776-4d9256b6f6ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2hpcCUyMGRvcml0b3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
-              alt="bonus"></i>
+            </div>
+          </div>
+          <!-- BOTTOM -->
+          <div class="row text-end">
+            <div class="col-12">
+              <div id="activeUpgradeTwo"></div>
+
+            </div>
+          </div>
         </div>
+
+        <!-- SECTION CENTER DevilSaur CARD -->
+        <div class="col-6 d-flex justify-content-center">
+          <i id="canvas" class="" onclick="mine()">
+
+            <img id="bonus-image" class="bonus-image" onclick="bonus()" src="/bonus2.jpg" alt="bonus"></i>
+        </div>
+
+        <!-- SECTION PASSIVE UPGRADE RIGHT SIDE -->
+        <div class="col-3">
+          <!-- TOP -->
+          <div class="row">
+            <div class="col-12">
+              <div id="passiveUpgradeOne"></div>
+
+            </div>
+          </div>
+          <!-- BOTTOM -->
+          <div class="row">
+            <div class="col-12">
+              <div id="passiveUpgradeTwo"></div>
+
+            </div>
+          </div>
+        </div>
+
+
+
       </div>
 
-      <div class="row">
-        <div class="col-6 text-white text-end">
-          <p>Click Count
-            <span id="clickCount">0</span>
+
+      <!-- SECTION BOTTOM -->
+      <div class="row text-white text-center">
+        <!-- SECTION CHAT BOX LEFT-->
+        <div class="col-4" id="skinnningLevel">
+          <div class="chat-zero" id="">
+
+            <p>Devilsaur Leather Prices Are Up! Time to take advantage of It. Collect as much leather as you can to
+              sell for profit. Beat everyone else to the tag. Be the first to click to claim the sweet spoils. If
+              you do good enough maybe you'll finally get a day off to spend with the family. Legend Has of a RARE
+              SPAWN that appears every so often. If you can tag him get the extra loot!</p>
+
+          </div>
+
+
+
+        </div>
+        <!-- SECTION ACTIVE AMOUNT LEFT-->
+
+        <!-- SECTION TOTAL AMOUNT MIDDLE -->
+        <div class="col-2 text-danger">
+          <p class="bg-dark text-center rounded">Total Leather:
+            <span id="clickCount"> 0</span>
           </p>
         </div>
+        <!-- SECTION PASSIVE AMOUNT RIGHT -->
+        <div class="col-2 text-danger">
 
-        <div class="col-6 text-white ">
-          <p id="">Click Amount<span id="clickAmount">0</span></p>
-          <p id="">Auto Amount<span id="autoAmount">0</span></p>
+          <p class="bg-dark text-center rounded" id="">Leather Per Click:<span id="clickAmount"> 0</span></p>
+
+          <p class="bg-dark text-center rounded" id="">Passive Leather:<span id="autoAmount"> 0</span></p>
         </div>
+        <!-- SECTION PASSIVE BUTTON RIGHT -->
+        <div class="col-4">
+
+          <button class="btn btn-dark" onclick="buyPick('pickaxe')">Skinning Skill++<span id="pickAmount"></span>
+            <p> <span id="pickPrice"></span></p>
+          </button>
+
+          <button class="btn btn-secondary" onclick="buyAxe()">Sharpen Knife<span id="axeAmount"></span>
+            <p> <span id="axePrice">500</span></p>
+          </button>
+
+
+
+
+
+
+          <button class="btn btn-dark" onclick="buyRover('rover')"> Buy Map
+            <span id="roverAmount"></span>
+            <p> <span id="roverPrice">1000</span></p>
+          </button>
+
+          <button class="btn btn-secondary" onclick="buyHummer('hummer')"> Buy Boomkin
+            <span id="hummerAmount"></span>
+            <p> <span id="hummerPrice"></span></p>
+          </button>
+
+        </div>
+
+
+
+
+
+
+
       </div>
 
       <div class="row justify-content-center">
         <div class="col-6">
 
-          <button onclick="buyPick('pickaxe')">buy pick <span id="pickAmount"></span>
-            <p>price <span id="pickPrice"></span></p>
-          </button>
 
-          <button onclick="buyAxe()">buy Axe <span id="axeAmount"></span>
-            <p>price <span id="axePrice">500</span></p>
-          </button>
 
-          <button onclick="buyHummer('hummer')"> buy hummer
-            <span id="hummerAmount">0</span>
-            <p>price <span id="hummerPrice"></span></p>
-          </button>
 
-          <button onclick="buyRover('rover')"> buy rover
-            <span id="roverAmount">0</span>
-            <p>price <span id="roverPrice">1000</span></p>
-          </button>
         </div>
       </div>
+
     </div>
-
-
-    <!-- TEST BUTTONS -->
-    <div class="col-6">
-
-      <button onclick="collectAutoUpgrades()">Auto Upgrade TESTER</button>
-
-      <button onclick="hideImage()"> TESTEr
-        <span id="itemCount">0</span></button>
-
-      <button onclick="buyItem('axe')"> TESTE
-        <span id="itemCount">0</span></button>
-
-
-
-
 
 
   </main>
 
-  <footer></footer>
+  <footer class="container-fluid bg-dark">
+    <div class="row">
+      <div class="col-12">Made By Jasper</div>
+    </div>
+
+  </footer>
 
 
   <script src="app.js"></script>

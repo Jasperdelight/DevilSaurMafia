@@ -1,22 +1,83 @@
-img,
-i {
-  cursor: pointer;
+#body {
+  font-family: 'Permanent Marker', cursive;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .unselectable {
   user-select: none;
 }
 
+.bg-image {
+  background-image: url(/bg.jpg);
+  background-size: cover;
+  background-position: left;
+}
+
 #canvas {
-  background-image: url(https://images.unsplash.com/flagged/photo-1557040430-fe79b4234586?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmlnJTIwYmVsbHl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60);
-  width: 60vh;
-  height: 60vh;
+
+  background-image: url(/main.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 59vh;
+  width: 70vh;
   position: relative;
+  border: 5px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 10%;
+  cursor: pointer;
 }
 
 .bonus-image {
   max-width: 15vh;
   max-height: 15vh;
   display: none;
+  cursor: crosshair
+}
 
+.alternate-boomkin {
+  background-image: url(https://media0.giphy.com/media/QJJLEztnLYmAfIkCUI/200w.webp?cid=ecf05e47w0nt0r818dox6gpnd6s8uwew0t3sq4jylbf7jx48&ep=v1_gifs_search&rid=200w.webp&ct=g);
+}
+
+.upgrade-border {
+  border: 2px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5%;
+}
+
+.map-image {
+  background-image: url(/mapo.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 22vh;
+  height: 20vh;
+  border: 2px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5%;
+}
+
+.chat-zero {
+  background-image: url(/moonminer0.PNG);
+  display: flex;
+  background-size: cover;
+  width: 69vh;
+  height: 30vh;
+}
+
+.chat-one {
+  background-image: url(/moonminer1.PNG);
+  display: flex;
+  background-size: cover;
+  width: 69vh;
+  height: 30vh;
+}
+
+.chat-two {
+  background-image: url(moonminer2.PNG);
+  display: flex;
+  background-size: cover;
+  width: 69vh;
+  height: 30vh;
 }

@@ -1,10 +1,10 @@
 // NOTES go into my upgrades and get the quantity number out of each item and assign to a value to then draw to HTML in a different function instead of trying to update my HTML in my buy item button. Have one function that finds my quantity value of each item, and then have another function that draws/updates the number that corresponds to each HTML document
 
 // SECTION Global Variables
-let clickCount = 1000
+let clickCount = 10000
 let clickAmount = 1
 let autoAmount = 0
-let pickElem = 0
+let pickElem = ''
 let itemElem = 0
 let axePrice = 100
 let pickPrice = 20
@@ -23,6 +23,12 @@ const axePriceElem = document.getElementById('axePrice')
 const pickPriceElem = document.getElementById('pickPrice')
 const roverPriceElem = document.getElementById('roverPrice')
 const hummerPriceElem = document.getElementById('hummerPrice')
+const activeUpgradeOne = document.getElementById('activeUpgradeOne')
+const activeUpgradeTwo = document.getElementById('activeUpgradeTwo')
+const passiveUpgradeOne = document.getElementById('passiveUpgradeOne')
+const passiveUpgradeTwo = document.getElementById('passiveUpgradeTwo')
+const skinningLevelElem = document.getElementById('skinnningLevel')
+const rareSpawnElem = document.getElementById('rareSpawn')
 // SECTION OBJECTS
 let clickUpgrades = [
   {
@@ -81,6 +87,7 @@ function mine() {
   console.log('clickAmount', clickAmount)
   updateCount()
 }
+// Skinning Knife
 function buyAxe() {
   let axe = clickUpgrades[1]
   if (clickCount >= axe.price) {
@@ -97,6 +104,7 @@ function buyAxe() {
   }
   else { alert('not enough click') }
 }
+// Skinning ++
 function buyPick(itemName) {
   let pickAxeItem = clickUpgrades.find(upgrade => upgrade.name == itemName)
   // Checks to see if you have enough clicks
@@ -112,6 +120,17 @@ function buyPick(itemName) {
     // apply upgrades to click
     // let upgradeClick = pickAxeItem.quantity * pickAxeItem.multiplier
     clickAmount += pickAxeItem.multiplier
+
+    skinningLevelElem.innerHTML = `<div class="chat-one" id=""></div>`
+
+
+    if (pickAxeItem.quantity >= 2) {
+      skinningLevelElem.innerHTML = `
+      <div class="chat-two" id="">
+      </div>
+      `
+    }
+
     // console.log(upgrade)
     updateCount()
   }
@@ -132,6 +151,7 @@ function buyItem(itemName) {
     updateCount()
   }
 }
+// Map
 function buyRover(itemName) {
   let autoUpgrade = automaticUpgrades.find(upgrade => upgrade.name == itemName)
   if (clickCount >= autoUpgrade.price) {
@@ -141,10 +161,17 @@ function buyRover(itemName) {
     autoUpgrade.price *= 2
     roverPrice = autoUpgrade.price
     roverAmountElem.innerText = autoUpgrade.quantity
+    passiveUpgradeOne.innerHTML = `
+    <img class = 'map-image'
+    src=""
+    alt="">
+    `
+
     updateCount()
   }
   else { alert('not enough clicks') }
 }
+// Moonkin
 function buyHummer(itemName) {
   let autoUpgrade = automaticUpgrades.find(upgrade => upgrade.name == itemName)
   if (clickCount >= autoUpgrade.price) {
@@ -154,6 +181,13 @@ function buyHummer(itemName) {
     autoUpgrade.price *= 2
     hummerPrice = autoUpgrade.price
     hummerAmountElem.innerText = autoUpgrade.quantity
+    passiveUpgradeTwo.innerHTML = `
+    <img
+    class = 'upgrade-border'
+    src="https://media0.giphy.com/media/QJJLEztnLYmAfIkCUI/200w.webp?cid=ecf05e47w0nt0r818dox6gpnd6s8uwew0t3sq4jylbf7jx48&ep=v1_gifs_search&rid=200w.webp&ct=g"
+    alt="Moonkin">
+    `
+
     updateCount()
   }
   else { alert('not enough clicks') }
@@ -163,7 +197,10 @@ function buyHummer(itemName) {
 function hideImage() {
   const img = document.getElementById('bonus-image');
   const canvas = document.getElementById('canvas');
+
   if (img.style.display === 'none') {
+    // update alert box
+    rareSpawnElem.innerText = 'RARE SPAWN!!'
     // hide / unhide image
     img.style.display = 'block';
     img.style.position = 'absolute';
@@ -181,6 +218,7 @@ function hideImage() {
     img.style.top = randomY + 'px'
   } else {
     img.style.display = 'none'
+    rareSpawnElem.innerText = '! !'
   }
   console.log('bonus')
 }
