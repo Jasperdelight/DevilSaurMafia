@@ -1,5 +1,5 @@
 // SECTION Global Variables
-let clickCount = 10000
+let clickCount = 0
 let clickAmount = 1
 let autoAmount = 0
 let pickElem = ''
