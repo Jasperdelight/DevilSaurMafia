@@ -1,5 +1,3 @@
-// NOTES go into my upgrades and get the quantity number out of each item and assign to a value to then draw to HTML in a different function instead of trying to update my HTML in my buy item button. Have one function that finds my quantity value of each item, and then have another function that draws/updates the number that corresponds to each HTML document
-
 // SECTION Global Variables
 let clickCount = 10000
 let clickAmount = 1
@@ -8,8 +6,9 @@ let pickElem = ''
 let itemElem = 0
 let axePrice = 100
 let pickPrice = 20
-let roverPrice = 600
-let hummerPrice = 2000
+let roverPrice = 250
+let hummerPrice = 1000
+let leatherGained = 0
 // SECTION DOC Elements
 const clickCountElem = document.getElementById('clickCount')
 const pickAmountElem = document.getElementById('pickAmount')
@@ -29,6 +28,12 @@ const passiveUpgradeOne = document.getElementById('passiveUpgradeOne')
 const passiveUpgradeTwo = document.getElementById('passiveUpgradeTwo')
 const skinningLevelElem = document.getElementById('skinnningLevel')
 const rareSpawnElem = document.getElementById('rareSpawn')
+const leatherGainedElem = document.getElementById('leatherGained')
+const buttonSkinElem = document.getElementById('skinSkill')
+const achievementElem = document.getElementById('achievements')
+const achievementTwoElem = document.getElementById('achievementsTwo')
+const compassElem = document.getElementById('compass')
+const drawCompassElem = document.getElementById('drawCompass')
 // SECTION OBJECTS
 let clickUpgrades = [
   {
@@ -47,13 +52,13 @@ let clickUpgrades = [
 let automaticUpgrades = [
   {
     name: 'rover',
-    price: 600,
+    price: 250,
     quantity: 0,
     multiplier: 20
   },
   {
     name: 'hummer',
-    price: 2000,
+    price: 1000,
     quantity: 0,
     multiplier: 100
   }
@@ -69,42 +74,54 @@ function updateCount() {
   pickPriceElem.innerText = pickPrice
   roverPriceElem.innerText = roverPrice
   hummerPriceElem.innerText = hummerPrice
+  leatherGainedElem.innerText = leatherGained
 }
 function collectAutoUpgrades() {
   automaticUpgrades.forEach(upgrade => {
     let upgradeAmount = upgrade.quantity * upgrade.multiplier
     clickCount += upgradeAmount
+    leatherGained += upgradeAmount
     clickCountElem.innerText = clickCount
+    leatherGainedElem.innerText = leatherGained
   });
+  updateCount();
+  mileStone();
+  buttonChecker();
 }
 function mine() {
+  leatherGained++
   clickCount++
   clickUpgrades.forEach(upgrade => {
     let upgradeClick = upgrade.quantity * upgrade.multiplier
     clickCount += upgradeClick
+    leatherGained += upgradeClick
   });
   console.log('clickCount', clickCount)
   console.log('clickAmount', clickAmount)
-  updateCount()
+  mileStone();
+  buttonChecker();
+  updateCount();
 }
-// Skinning Knife
+// BUY SKINNING KNIF
 function buyAxe() {
   let axe = clickUpgrades[1]
   if (clickCount >= axe.price) {
     clickCount -= clickUpgrades[1].price
     axe.quantity++
     clickAmount += axe.multiplier
-    clickUpgrades[1].price *= 2
+    clickUpgrades[1].price += 100
     // clickQuantity = axe.quantity * axe.multiplier
     // clickTotal = clickQuantity + clickAmount
     // clickAmount = clickTotal
     axePrice = clickUpgrades[1].price
     axeAmountElem.innerText = axe.quantity
-    updateCount()
+    activeUpgradeOne.innerHTML += `<i class="mdi mdi-knife text-danger fs-2"></i>`
+    buttonChecker();
+    updateCount();
   }
   else { alert('not enough click') }
 }
-// Skinning ++
+// BUY SKINNING ++
 function buyPick(itemName) {
   let pickAxeItem = clickUpgrades.find(upgrade => upgrade.name == itemName)
   // Checks to see if you have enough clicks
@@ -113,7 +130,7 @@ function buyPick(itemName) {
     clickCount -= pickAxeItem.price
     // Increases your quantity of item
     pickAxeItem.quantity++
-    pickAxeItem.price *= 2
+    pickAxeItem.price += 20
     // update HTML to reflect change in pickaxe quantity
     pickElem = pickAxeItem.quantity
     pickPrice = pickAxeItem.price
@@ -121,21 +138,26 @@ function buyPick(itemName) {
     // let upgradeClick = pickAxeItem.quantity * pickAxeItem.multiplier
     clickAmount += pickAxeItem.multiplier
 
+
     skinningLevelElem.innerHTML = `<div class="chat-one" id=""></div>`
 
 
-    if (pickAxeItem.quantity >= 2) {
+    if (pickAxeItem.quantity % 2 == 0) {
       skinningLevelElem.innerHTML = `
       <div class="chat-two" id="">
       </div>
       `
     }
+    if (pickAxeItem.quantity % 2 == 1) {
+      skinningLevelElem.innerHTML = `<div class="chat-one" id=""></div>`
+    }
 
-    // console.log(upgrade)
-    updateCount()
+    buttonChecker();
+    updateCount();
   }
   else { alert('not enough clicks') }
 };
+// UNUSED FUNCTION (Tried to make one buy function but moved onto styling and stretch goals -_- )
 function buyItem(itemName) {
   let singleItem = clickUpgrades.find(upgrade => upgrade.name == itemName)
   console.log(singleItem);
@@ -146,12 +168,13 @@ function buyItem(itemName) {
     clickAmount += singleItem.multiplier
     // UPDATE ALL HTML
     itemElem = singleItem.quantity
+    // NOTES / go into my upgrades and get the quantity number out of each item and assign to a value to then draw to HTML in a DIFFERENT function instead of trying to update my HTML in my buy item button. Have ONE function that finds my QUANTITY VALUE of each item, and then have ANOTHER function that DRAWS/UPDATES the number that corresponds to EACH HTML document
 
-    console.log(clickAmount)
-    updateCount()
+    buttonChecker();
+    updateCount();
   }
 }
-// Map
+// BUY MAP & COMPASS
 function buyRover(itemName) {
   let autoUpgrade = automaticUpgrades.find(upgrade => upgrade.name == itemName)
   if (clickCount >= autoUpgrade.price) {
@@ -162,16 +185,20 @@ function buyRover(itemName) {
     roverPrice = autoUpgrade.price
     roverAmountElem.innerText = autoUpgrade.quantity
     passiveUpgradeOne.innerHTML = `
-    <img class = 'map-image'
-    src=""
-    alt="">
+    <div class = "map-image"> </>
     `
-
-    updateCount()
+    if (autoUpgrade.quantity >= 1) {
+      compassElem.innerText = 'Buy Compass x'
+    }
+    if (autoUpgrade.quantity > 1) {
+      drawCompassElem.innerHTML += `<i class="mdi mdi-compass fs-2"></i>`
+    }
+    buttonChecker();
+    updateCount();
   }
   else { alert('not enough clicks') }
 }
-// Moonkin
+// BUY MOONKIN
 function buyHummer(itemName) {
   let autoUpgrade = automaticUpgrades.find(upgrade => upgrade.name == itemName)
   if (clickCount >= autoUpgrade.price) {
@@ -187,20 +214,111 @@ function buyHummer(itemName) {
     src="https://media0.giphy.com/media/QJJLEztnLYmAfIkCUI/200w.webp?cid=ecf05e47w0nt0r818dox6gpnd6s8uwew0t3sq4jylbf7jx48&ep=v1_gifs_search&rid=200w.webp&ct=g"
     alt="Moonkin">
     `
-
-    updateCount()
+    if (autoUpgrade.quantity >= 2) {
+      activeUpgradeTwo.innerHTML = `
+      <img
+      class = 'upgrade-border'
+      src="https://media1.giphy.com/media/2UpMjkgq1lZdVVnTAv/giphy.gif?cid=ecf05e47tqjj966yl5viuiwlkwzt64ix04556mwadmyvjmkt&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+      alt="Moonkin">
+      `
+    }
+    buttonChecker();
+    updateCount();
   }
   else { alert('not enough clicks') }
 }
 // SECTION RANDOM STUFF
+// ACHIEVEMENTS
+function mileStone() {
 
+
+  if (leatherGained >= 10) {
+    rareSpawnElem.innerText = '🎉 ACHIEVEMENT UNLOCKED - Slow N Steady 🎉'
+    // achievementElem.innerText = '🎉 Slow N Steady - 10 LEATHER EARNED 🎉'
+    achievementTwoElem.innerText = '🐢 Slow N Steady - 10 LEATHER EARNED 🐢'
+  }
+  if (leatherGained >= 50) {
+    rareSpawnElem.innerText = `🎉 ACHIEVEMENT UNLOCKED - Heatin' up! 🎉`
+    achievementElem.innerText = `🐢 Slow N Steady - 10 LEATHER EARNED 🐢`
+    achievementTwoElem.innerText = `🔥 Heatin' up! 100 LEATHER EARNED 🔥`
+  }
+  if (leatherGained >= 100) {
+    rareSpawnElem.innerText = '🎉 ACHIEVEMENT UNLOCKED - LET HIM COOK! 🎉'
+    achievementElem.innerText = `🔥 Heatin' up! 100 LEATHER EARNED 🔥`
+    achievementTwoElem.innerText = '🍳 LET HIM COOK! 1000 LEATHER EARNED 🍳'
+  }
+  if (leatherGained >= 1000) {
+    rareSpawnElem.innerText = '🎉 ACHIEVEMENT UNLOCKED - YOU ANIMAL🎉'
+    achievementElem.innerText = '🍳 LET HIM COOK! 1000 LEATHER EARNED 🍳'
+    achievementTwoElem.innerText = '🐕‍🦺 YOU ANIMAL - 2000 LEATHER EARNED 🐕‍🦺'
+  }
+  if (leatherGained >= 2000) {
+    rareSpawnElem.innerText = '🎉 ACHIEVEMENT UNLOCKED - YOU ANIMAL🎉'
+    achievementElem.innerText = '🐕‍🦺 YOU ANIMAL - 2000 LEATHER EARNED 🐕‍🦺'
+    achievementTwoElem.innerText = '🏠 GO HOME - 2000 LEATHER EARNED 🏠'
+  }
+  if (leatherGained >= 3000) {
+    rareSpawnElem.innerText = '🎉 ACHIEVEMENT UNLOCKED - YOU ANIMAL🎉'
+    achievementElem.innerText = '🏠 GO HOME - 2000 LEATHER EARNED 🏠'
+    achievementTwoElem.innerText = '👶 THINK OF THE CHILDREN! - 2000 LEATHER EARNED 🐣'
+  }
+  if (leatherGained >= 9000) {
+    rareSpawnElem.innerText = '🎉 ACHIEVEMENT UNLOCKED - ITS OVER 9000!!!!🎉'
+    achievementElem.innerText = '👶 THINK OF THE CHILDREN! - 2000 LEATHER EARNED 🐣'
+    achievementTwoElem.innerText = '🐱‍👤🐱‍👤ITS OVER 9000!!!!🐱‍👤🐱‍👤'
+  }
+  if (leatherGained >= 10000) {
+    rareSpawnElem.innerText = '🎉 ACHIEVEMENT UNLOCKED - Close Your Damn Web Browser🎉'
+    achievementElem.innerText = '🐱‍👤🐱‍👤ITS OVER 9000!!!!🐱‍👤🐱‍👤'
+    achievementTwoElem.innerText = '⚡⚡ Close Your Damn Web Browser ⚡⚡'
+  }
+  if (leatherGained >= 100000) {
+    rareSpawnElem.innerText = '🎉 ACHIEVEMENT UNLOCKED - Seriously Your Wasting Power >:C🎉'
+    achievementElem.innerText = '⚡⚡ Close Your Damn Web Browser ⚡⚡'
+    achievementTwoElem.innerText = '😡😡 Seriously Your Wasting Power >:C 😡😡'
+  }
+  if (leatherGained >= 1000000) {
+    rareSpawnElem.innerText = `🎉 ACHIEVEMENT UNLOCKED - You're Still Here? 🎉`
+    achievementElem.innerText = '😡😡 Seriously Your Wasting Power >:C 😡😡'
+    achievementTwoElem.innerText = `❓❔❓ You're Still Here?❓❔❓ `
+  }
+}
+// DISABLE BUTTONS IF NOT ENOUGH LEATHER
+function buttonChecker() {
+  if (clickCount < clickUpgrades[0].price) {
+    document.getElementById('skinSkill').disabled = true
+  }
+  else {
+    document.getElementById('skinSkill').disabled = false
+  }
+
+  if (clickCount < clickUpgrades[1].price) {
+    document.getElementById('knifeSkill').disabled = true
+  }
+  else {
+    document.getElementById('knifeSkill').disabled = false
+  }
+  if (clickCount < automaticUpgrades[0].price) {
+    document.getElementById('mapSkill').disabled = true
+  }
+  else {
+    document.getElementById('mapSkill').disabled = false
+  }
+  if (clickCount < automaticUpgrades[1].price) {
+    document.getElementById('boomkinSkill').disabled = true
+  }
+  else {
+    document.getElementById('boomkinSkill').disabled = false
+  }
+}
+// HIDE / UNHIDE BONUS IMAGE
 function hideImage() {
   const img = document.getElementById('bonus-image');
   const canvas = document.getElementById('canvas');
 
   if (img.style.display === 'none') {
     // update alert box
-    rareSpawnElem.innerText = 'RARE SPAWN!!'
+    rareSpawnElem.innerText = '⚠🔪⚠ RARE SPAWN ⚠🔪⚠'
     // hide / unhide image
     img.style.display = 'block';
     img.style.position = 'absolute';
@@ -218,15 +336,18 @@ function hideImage() {
     img.style.top = randomY + 'px'
   } else {
     img.style.display = 'none'
-    rareSpawnElem.innerText = '! !'
+    // rareSpawnElem.innerText = '! !'
   }
   console.log('bonus')
 }
+// BONUS LEATHER GAINED FROM RARE
 function bonus() {
   clickCount += 10
+  leatherGained += 10
   clickUpgrades.forEach(upgrade => {
     let upgradeClick = upgrade.quantity * upgrade.multiplier
     clickCount += upgradeClick
+    leatherGained += upgradeClick
   });
   console.log('clickCount', clickCount)
   console.log('clickAmount', clickAmount)
@@ -234,12 +355,10 @@ function bonus() {
 }
 
 
-
-
 // ON PAGE LOAD
 setInterval(collectAutoUpgrades, 3000);
 updateCount();
 hideImage();
-
+buttonChecker();
 setInterval(hideImage, 10000);
 setInterval(hideImage, 11000);

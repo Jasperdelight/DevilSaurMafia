@@ -1,20 +1,10 @@
+/* SECTION ELEMENT SELECTORS */
 #body {
   font-family: 'Permanent Marker', cursive;
   font-family: 'Space Grotesk', sans-serif;
 }
 
-.unselectable {
-  user-select: none;
-}
-
-.bg-image {
-  background-image: url(/bg.jpg);
-  background-size: cover;
-  background-position: left;
-}
-
 #canvas {
-
   background-image: url(/main.jpg);
   background-size: cover;
   background-position: center;
@@ -28,22 +18,20 @@
   cursor: pointer;
 }
 
-.bonus-image {
-  max-width: 15vh;
-  max-height: 15vh;
-  display: none;
-  cursor: crosshair
+/* SECTION CLASS SELECTORS */
+.unselectable {
+  user-select: none;
+}
+
+/* Image Links */
+.bg-image {
+  background-image: url(/bg.jpg);
+  background-size: cover;
+  background-position: left;
 }
 
 .alternate-boomkin {
-  background-image: url(https://media0.giphy.com/media/QJJLEztnLYmAfIkCUI/200w.webp?cid=ecf05e47w0nt0r818dox6gpnd6s8uwew0t3sq4jylbf7jx48&ep=v1_gifs_search&rid=200w.webp&ct=g);
-}
-
-.upgrade-border {
-  border: 2px;
-  border-color: black;
-  border-style: solid;
-  border-radius: 5%;
+  background-image: url(https://media1.giphy.com/media/2UpMjkgq1lZdVVnTAv/200w.webp?cid=ecf05e47tqjj966yl5viuiwlkwzt64ix04556mwadmyvjmkt&ep=v1_gifs_search&rid=200w.webp&ct=g);
 }
 
 .map-image {
@@ -80,4 +68,33 @@
   background-size: cover;
   width: 69vh;
   height: 30vh;
+}
+
+/* Styling */
+.bonus-image {
+  max-width: 15vh;
+  max-height: 15vh;
+  display: none;
+  cursor: crosshair
+}
+
+.upgrade-border {
+  border: 2px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5%;
+}
+
+.glass-box {
+  background: rgba(255, 255, 255, 0.082);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.7px);
+  -webkit-backdrop-filter: blur(4.7px);
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.button-size {
+  width: 9rem;
+  height: 5rem;
 }

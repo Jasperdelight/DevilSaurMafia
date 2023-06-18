@@ -10,178 +10,160 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Space+Grotesk&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="style.css">
-
-
-
-  <title>Document</title>
+  <title>DevilSaur Mafia</title>
 </head>
 
 <body class="font">
-
-  <!-- SECTION TITLE -->
+  <!-- SECTION TITLE/ HEADER -->
   <header class="container-fluid bg-dark text-white text-center">
     <div class="row">
       <div class="col-12">
-        <h1>Devilsaur Mafia</h1>
+        <h1>DevilSaur Mafia</h1>
       </div>
     </div>
-
-    <!-- SECTION upgrades / alert banner -->
+    <!-- SECTION UPGRADES / ALERT BANNER -->
     <div class="row">
-      <div class="col-3"></div>
-
-
-      <div class="col-6 text-danger">
-        <p id="rareSpawn"></p>
+      <!-- OLD ACHIEVEMENT LEFT -->
+      <div class="col-3 text-success">
+        <div id="achievements"></div>
       </div>
-      <div class="col-3"></div>
+      <!-- ALERT BANNER CENTER -->
+      <div class="col-6 text-danger">
+        <p id="rareSpawn">! !</p>
+      </div>
+      <!-- NEW ACHIEVEMENT RIGHT -->
+      <div class="col-3 text-success">
+        <div id="achievementsTwo"></div>
+      </div>
     </div>
   </header>
   <!-- SECTION MAIN HERO CARD -->
   <main class="bg-image">
     <div class="container-fluid bg-image unselectable">
-
       <div class="row">
         <!-- SECTION ACTIVE UPGRADE LEFT SIDE -->
         <div class="col-3">
+          <!-- TOP -->
           <div class="row justify-content-center">
-            <!-- TOP -->
-            <div class="col-12 text-white shadow rounded font-shadow text-center">
-              <div>
-
-              </div>
-
+            <div class="col-12 text-danger text-center">
+              <div id="activeUpgradeOne"><i class="fs-2"></i></div>
             </div>
           </div>
           <!-- BOTTOM -->
           <div class="row text-end">
             <div class="col-12">
               <div id="activeUpgradeTwo"></div>
-
             </div>
           </div>
         </div>
-
         <!-- SECTION CENTER DevilSaur CARD -->
         <div class="col-6 d-flex justify-content-center">
           <i id="canvas" class="" onclick="mine()">
-
             <img id="bonus-image" class="bonus-image" onclick="bonus()" src="/bonus2.jpg" alt="bonus"></i>
         </div>
-
-        <!-- SECTION PASSIVE UPGRADE RIGHT SIDE -->
+        <!-- SECTION PASSIVE UPGRADES RIGHT -->
         <div class="col-3">
-          <!-- TOP -->
+          <!-- PASSIVE UPGRADE RIGHT/TOP -->
           <div class="row">
             <div class="col-12">
               <div id="passiveUpgradeOne"></div>
-
             </div>
           </div>
-          <!-- BOTTOM -->
+          <!-- PASSIVE UPGRADE RIGHT/BOTTOM  -->
           <div class="row">
             <div class="col-12">
               <div id="passiveUpgradeTwo"></div>
-
             </div>
           </div>
         </div>
-
-
-
       </div>
-
-
-      <!-- SECTION BOTTOM -->
-      <div class="row text-white text-center">
-        <!-- SECTION CHAT BOX LEFT-->
-        <div class="col-4" id="skinnningLevel">
+      <!-- SECTION BOTTOM SECTION -->
+      <div class="row text-white">
+        <!--  CHAT BOX / INTRO / SKINNING LVL BOTTOM LEFT-->
+        <div class="col-4 " id="skinnningLevel">
           <div class="chat-zero" id="">
-
-            <p>Devilsaur Leather Prices Are Up! Time to take advantage of It. Collect as much leather as you can to
+            <p class="glass-box p-4 text-center">
+              DevilSaur Leather Prices Are Up! <br> Time to take advantage of It. Collect as much leather as you can to
               sell for profit. Beat everyone else to the tag. Be the first to click to claim the sweet spoils. If
-              you do good enough maybe you'll finally get a day off to spend with the family. Legend Has of a RARE
-              SPAWN that appears every so often. If you can tag him get the extra loot!</p>
-
+              you do good enough maybe you'll finally get a day off to spend with the family. Maybe you can get those
+              silly Boomkin's to help you with the job! <br> Legend Has of a RARE
+              SPAWN that appears every so often. <br> CLICK ON HIM FOR BONUS LEATHER!</p>
           </div>
-
-
-
         </div>
-        <!-- SECTION ACTIVE AMOUNT LEFT-->
-
-        <!-- SECTION TOTAL AMOUNT MIDDLE -->
-        <div class="col-2 text-danger">
-          <p class="bg-dark text-center rounded">Total Leather:
-            <span id="clickCount"> 0</span>
+        <!-- SECTION STATS MIDDLE BOTTOM -->
+        <div class="col-2">
+          <!-- CURRENT/ACTIVE AMOUNT MIDDLE/LEFT/TOP-->
+          <p class="bg-dark text-center rounded">Current Leather:
+            <span class="text-danger" id="clickCount"> 0</span>
+          </p>
+          <!-- TOTAL AMOUNT GAINED /MIDDLE/LEFT/BOTTOM -->
+          <p class="bg-dark text-center rounded">Total Leather Gained:
+            <span class="text-danger" id="leatherGained"> 0</span>
           </p>
         </div>
-        <!-- SECTION PASSIVE AMOUNT RIGHT -->
-        <div class="col-2 text-danger">
-
-          <p class="bg-dark text-center rounded" id="">Leather Per Click:<span id="clickAmount"> 0</span></p>
-
-          <p class="bg-dark text-center rounded" id="">Passive Leather:<span id="autoAmount"> 0</span></p>
+        <!-- LEATHER PER CLICK /MIDDLE/RIGHT/TOP -->
+        <div class="col-2">
+          <p class="bg-dark text-center rounded" id="">Leather Per Click: <span class="text-danger" id="clickAmount">
+              0</span></p>
+          <!-- PASSIVE AMOUNT /MIDDLE/RIGHT/BOTTOM -->
+          <p class="bg-dark text-center rounded" id="">Passive Leather: <span class="text-danger" id="autoAmount">
+              0</span></p>
         </div>
-        <!-- SECTION PASSIVE BUTTON RIGHT -->
+        <!-- SECTION ACTIVE BUTTONS RIGHT (LEFT SIDE) -->
         <div class="col-4">
-
-          <button class="btn btn-dark" onclick="buyPick('pickaxe')">Skinning Skill++<span id="pickAmount"></span>
+          <!-- SKINNING SKILL+ BUTTON -->
+          <button id="skinSkill"
+            title="Increase your skinning skill, allowing you to harvest more leather +1 Leather Per click"
+            class="btn btn-dark button-size" onclick="buyPick('pickaxe')">+Skinning Skill x<span id="pickAmount"></span>
             <p> <span id="pickPrice"></span></p>
           </button>
-
-          <button class="btn btn-secondary" onclick="buyAxe()">Sharpen Knife<span id="axeAmount"></span>
+          <!-- SHARPEN KNIFE BUTTON -->
+          <button id="knifeSkill"
+            title="Sharpen your trusty skinning knife to increase your leather yield +6 Leather Per Click"
+            class="btn btn-dark button-size" onclick="buyAxe()">Sharpen Knife x<span id="axeAmount"></span>
             <p> <span id="axePrice">500</span></p>
           </button>
-
-
-
-
-
-
-          <button class="btn btn-dark" onclick="buyRover('rover')"> Buy Map
+          <!-- SECTION PASSIVE BUTTONS RIGHT (RIGHT SIDE) -->
+          <!-- MAP/COMPASS BUTTON -->
+          <button id="mapSkill"
+            title="Help track the spawn locations of the Elusive Devilsaur's. Generates 20 Leather Per 3 seconds"
+            class="btn btn-secondary button-size" onclick="buyRover('rover')">
+            <span id="compass">Buy Map</span>
             <span id="roverAmount"></span>
-            <p> <span id="roverPrice">1000</span></p>
+            <p> <span id="roverPrice">250</span></p>
           </button>
-
-          <button class="btn btn-secondary" onclick="buyHummer('hummer')"> Buy Boomkin
+          <!-- BOOMKIN BUTTON -->
+          <button id="boomkinSkill"
+            title="A powerful caster with a instant cast spell with long range to help skin Devilsaur's on the other side of the map for you. Generates 100 Leather Per 3 seconds"
+            class="btn btn-secondary button-size" onclick="buyHummer('hummer')"> Buy Boomkin x
             <span id="hummerAmount"></span>
             <p> <span id="hummerPrice"></span></p>
           </button>
-
+          <!-- COMPASS UPGRADES AREA RIGHT/BOTTOM -->
+          <div class="row">
+            <div class="col-12">
+              <div id="drawCompass"></div>
+            </div>
+          </div>
         </div>
-
-
-
-
-
-
-
       </div>
-
+      <!-- UNUSED -->
       <div class="row justify-content-center">
         <div class="col-6">
-
-
-
-
         </div>
       </div>
-
     </div>
-
-
   </main>
-
-  <footer class="container-fluid bg-dark">
+  <!-- SECTION FOOTER -->
+  <footer class="container-fluid bg-dark text-center text-secondary">
     <div class="row">
-      <div class="col-12">Made By Jasper</div>
+      <div class="col-12">Graphic/Art Content By Blizzard Entertainment©. ScreenShots By Myself Used Under Fair Use
+        Section 107
+        of Copyright Act. 💕Jasper💕</div>
     </div>
-
   </footer>
-
-
   <script src="app.js"></script>
 </body>
 
